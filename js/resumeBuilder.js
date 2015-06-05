@@ -8,96 +8,119 @@
    $("#header").prepend(formattedRole);
    $("#header").prepend(formattedName); 
    
+ // MAking bio object  
   var bio = {
     "name" : "Arunditti Sharma",
     "role" : "Web Developer",
     "contact" : {
-      "mobile" : "7325899007",
-      "email" : "arunditti@outlook.com",
+      "mobile" : "123456789",
+      "email" : "abc@outlook.com",
       "location" : "NJ"
     },
     "skills" : [
-      "HTML", "CSS", "JavaScript", "jquery"
+      "HTML", "CSS", "JavaScript", "jquery", "SQL"
   	],
   "bioPic" : "images/fry.jpg"
   }
 
+// MAking education object
 var education = {
   "schools": [
-    {"name": "Nova Southeastern University",
-      "city": "Fort Lauderdale, FL, USA",
+    {"name": "University name",
+      "city": "city name",
       "degree": "Masters",
       "major": ["InformationTechnology"],
-      "year": "June 2007 - March 2009"
+      "year": "year - year"
     },
     
-    {"name": "IGNOU",
-      "city": "Shimla, himachal Pradesh, India",
+    {"name": "School name",
+      "city": "city name",
       "degree": "Certificate in Computing",
-      "year": "January 2006 - June 2006"
+      "year": "year - year"
     },
 
-    {"name": "Jammu University",
-     "city": "Jammu, India",
+    {"name": "University name",
+     "city": "ndia",
      "degree": "Bachelor of Education",
-     "year": "August 2002 - December 2003"
+     "year": "year - year"
  	},
 
- 	{"name": "HNB Garhwal University",
- 	 "city": "Srinagar, Uttranchal, India",
+ 	{"name": "University name",
+ 	 "city": "city name",
  	 "degree": "Masters",
  	 "major": "Physics",
- 	 "year": "July 2000 - July 2002"
+ 	 "year": "year - year"
  	},
 
- 	{"name": "Himachal Pradesh University",
-     "city": "Shimla",
+ 	{"name": "University name",
+     "city": "city name",
      "degree": "Bachelor of Science",
-     "year": "July 1997 - June 2000"
+     "year": "year - year"
  	}
   ]
 }
 
+//Making work object
 var work = {
 	"jobs": [
 		{
-			"employer": "world Cares Center",
-			"city": "NYC",
-			"title": "Webmaster",
-			"year": "July 2009 - January 2010",
-			"description": "Maintaining and adding new features to the website"
+			"employer": "Employer name 1",
+			"location": "city name",
+			"title": "title 1",
+			"dates": "year - year",
+			"description": "description here"
 		},
 
 		{
-			"employer": "Alvin Sherman Library and research Center, NSU",
-			"city": "Fort Lauderdale, FL",
-			"title": "Graduate Student Assistant",
-			"year": "March 2008 - march 2009",
-			"description": "Library technical services- Searching a national database of bibliographic records for matching records to the books on the lists and downloading them to University database, and making appropriate changes to the records, cataloging new books and gift books"
+			"employer": "Employer name 2",
+			"location": "city name",
+			"title": "title 2",
+			"dates": "year - year",
+			"description": "description here"
 		},
 
 		{
-			"employer": "DAV ACC Sr. Sec. Public School",
-			"city": "Bilaspur, Himachal Pradesh, India",
-			"title": "High School Teacher",
-			"year": "April 2004 - March 2007",
-			"description": "Taught Science and Mathematics to high school students, organized career counselling and professional development eventsfor students, trained students for Science projects and seminars"
+			"employer": "Employer name 3",
+			"location": "city name",
+			"title": "title 3",
+			"dates": "year - year",
+			"description": "description here"
 		}
 	]
 }
 
+// Making projects object
 var projects = {
 	"projects": [
 	{
-		"title": "Sample Project",
-		"Year": 2015,
+		"title": "Sample Project2",
+		"dates": "year - year",
 		"description": "This is my work",
-		"images": ["https://www.udacity.com/course/viewer#!/c-ud804/l-1930528550/e-1935058561/m-1952638584",
+		"images": ["https://www.google.com",
 			"http://jsonlint.com/"
 		]
-	}
+	},
+
+  {
+    "title": "Sample Project 1",
+    "dates": "year - year",
+    "description": "This is my work",
+    "images": ["image1",
+      "image2"
+    ]
+  }
 	]
 }
+
+  var formattedMobile = HTMLmobile.replace("%data%", bio.contact.mobile);
+  $("#topContacts").append(formattedMobile);
+
+  var formattedEmail = HTMLemail.replace("%data%", bio.contact.email);
+  $("#topContacts").append(formattedEmail);
+
+  var formattedLocation = HTMLlocation.replace("%data%", bio.contact.location);
+  $("#topContacts").append(formattedLocation);
+
 
 if(bio.skills.length > 0) {
 
@@ -116,3 +139,68 @@ if(bio.skills.length > 0) {
   $("#skills").append(formattedSkill);
   
 }
+
+function displayWork() {
+for(job in work.jobs)
+{
+  // create new div for work experience
+  $("#workExperience").append(HTMLworkStart);
+  // concat employer and title
+  var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+  var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+  var formattedEmployerTitle = formattedEmployer + formattedTitle;
+  $(".work-entry:last").append(formattedEmployerTitle);
+
+  var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+  $(".work-entry:last").append(formattedLocation);
+
+  var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+  $(".work-entry:last").append(formattedDates);
+
+  var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+  $(".work-entry:last").append(formattedDescription);
+}
+}
+displayWork();
+
+//Holding dusplay function inside object projects. its called encapsulation
+projects.display = function() {
+  for(project in projects.projects)
+  {
+    $("#projects").append(HTMLprojectStart);
+
+   var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+    $(".project-entry:last").append(formattedTitle);
+
+    var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+    $(".project-entry:last").append(formattedDates);
+
+    var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+    $(".project-entry:last").append(formattedDescription);
+
+    if(projects.projects[project].images.length > 0) {
+      for(image in projects.projects[project].images) {
+        var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+        $(".project-entry:last").append(formattedImage);
+      }
+    } 
+  }
+}
+this.projects.display();
+
+
+$(document).click(function(loc) { 
+    var x = loc.pageX; 
+    var y = loc.pageY; 
+    logClicks(x, y);
+  });
+
+/** function inName(name) {
+  name = name.trim().split(" ");
+  console.log(name);
+  name[1] = name[1].toUpperCase();
+  name[0] = name[0].slice(0, 1).toUpperCase() + name[0].slice(1).toLowerCase();
+  return name[0] +" "+name[1];
+}
+inName();
+$("#main").append(internationalizeButton); */
