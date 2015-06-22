@@ -7,7 +7,7 @@
 
    $("#header").prepend(formattedRole);
    $("#header").prepend(formattedName); 
-   
+  
  // MAking bio object  
   var bio = {
     "name" : "Arunditti Sharma",
@@ -27,33 +27,33 @@
 var education = {
   "schools": [
     {"name": "University name",
-      "city": "city name",
+      "location": "city name",
       "degree": "Masters",
       "major": ["InformationTechnology"],
       "year": "year - year"
     },
     
     {"name": "School name",
-      "city": "city name",
+      "location": "city name",
       "degree": "Certificate in Computing",
       "year": "year - year"
     },
 
     {"name": "University name",
-     "city": "ndia",
+     "location": "india",
      "degree": "Bachelor of Education",
      "year": "year - year"
  	},
 
  	{"name": "University name",
- 	 "city": "city name",
+ 	 "location": "city name",
  	 "degree": "Masters",
  	 "major": "Physics",
  	 "year": "year - year"
  	},
 
  	{"name": "University name",
-     "city": "city name",
+     "location": "city name",
      "degree": "Bachelor of Science",
      "year": "year - year"
  	}
@@ -65,7 +65,7 @@ var work = {
 	"jobs": [
 		{
 			"employer": "Employer name 1",
-			"location": "city name",
+			"location": "Jersey city, NJ",
 			"title": "title 1",
 			"dates": "year - year",
 			"description": "description here"
@@ -73,7 +73,7 @@ var work = {
 
 		{
 			"employer": "Employer name 2",
-			"location": "city name",
+			"location": "New york city, NY",
 			"title": "title 2",
 			"dates": "year - year",
 			"description": "description here"
@@ -81,7 +81,7 @@ var work = {
 
 		{
 			"employer": "Employer name 3",
-			"location": "city name",
+			"location": "New York City, NY",
 			"title": "title 3",
 			"dates": "year - year",
 			"description": "description here"
@@ -96,21 +96,21 @@ var projects = {
 		"title": "Sample Project2",
 		"dates": "year - year",
 		"description": "This is my work",
-		"images": ["https://www.google.com",
-			"http://jsonlint.com/"
-		]
+		"images": ["images/androidmarker.png"]
 	},
 
   {
     "title": "Sample Project 1",
     "dates": "year - year",
     "description": "This is my work",
-    "images": ["image1",
-      "image2"
-    ]
+    "images": ["images/androidmarker.png"]
   }
 	]
 }
+
+bio.display = function() {
+  var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+  $("#header").append(formattedBioPic);
 
   var formattedMobile = HTMLmobile.replace("%data%", bio.contact.mobile);
   $("#topContacts").append(formattedMobile);
@@ -121,24 +121,31 @@ var projects = {
   var formattedLocation = HTMLlocation.replace("%data%", bio.contact.location);
   $("#topContacts").append(formattedLocation);
 
+  $("#footerContacts").append(formattedMobile);
+  $("#footerContacts").append(formattedEmail)
+  $("#footerContacts").append(formattedLocation);
 
-if(bio.skills.length > 0) {
 
-  $("#header").append(HTMLskillsStart);
+  if(bio.skills.length > 0) {
 
-  var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-  $("#skills").append(formattedSkill);
+    $("#header").append(HTMLskillsStart);
 
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-  $("#skills").append(formattedSkill);
+    var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+    $("#skills").append(formattedSkill);
 
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-  $("#skills").append(formattedSkill);
+    formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+    $("#skills").append(formattedSkill);
 
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-  $("#skills").append(formattedSkill);
-  
+    formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+    $("#skills").append(formattedSkill);
+
+    formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+    $("#skills").append(formattedSkill);
+    
+  }
 }
+
+bio.display();
 
 function displayWork() {
 for(job in work.jobs)
@@ -186,7 +193,7 @@ projects.display = function() {
     } 
   }
 }
-this.projects.display();
+projects.display();
 
 
 $(document).click(function(loc) { 
@@ -195,7 +202,8 @@ $(document).click(function(loc) {
     logClicks(x, y);
   });
 
-/** function inName(name) {
+ /** 
+ function inName(name) {
   name = name.trim().split(" ");
   console.log(name);
   name[1] = name[1].toUpperCase();
@@ -203,4 +211,9 @@ $(document).click(function(loc) {
   return name[0] +" "+name[1];
 }
 inName();
-$("#main").append(internationalizeButton); */
+$("#main").append(internationalizeButton); 
+*/
+
+
+// You want to see a map? Here is a map
+$("#mapDiv").append(googleMap);
