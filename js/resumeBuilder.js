@@ -30,32 +30,32 @@ var education = {
       "location": "city name",
       "degree": "Masters",
       "major": ["InformationTechnology"],
-      "year": "year - year"
+      "dates": "year - year"
     },
     
     {"name": "School name",
       "location": "city name",
       "degree": "Certificate in Computing",
-      "year": "year - year"
+      "dates": "year - year"
     },
 
     {"name": "University name",
      "location": "india",
      "degree": "Bachelor of Education",
-     "year": "year - year"
+     "dates": "year - year"
  	},
 
  	{"name": "University name",
  	 "location": "city name",
  	 "degree": "Masters",
  	 "major": "Physics",
- 	 "year": "year - year"
+ 	 "dates": "year - year"
  	},
 
  	{"name": "University name",
      "location": "city name",
      "degree": "Bachelor of Science",
-     "year": "year - year"
+     "dates": "year - year"
  	}
   ]
 }
@@ -170,7 +170,7 @@ for(job in work.jobs)
 }
 displayWork();
 
-//Holding dusplay function inside object projects. its called encapsulation
+//Holding display function inside object projects. its called encapsulation
 projects.display = function() {
   for(project in projects.projects)
   {
@@ -195,6 +195,31 @@ projects.display = function() {
 }
 projects.display();
 
+function displayEducation() {
+for(school in education.schools)
+{
+  // create new div for work experience
+  $("#education").append(HTMLschoolStart);
+  // concat employer and title
+  var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+
+  var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+  var formattedSchoolTitle = formattedSchoolName + formattedSchoolDegree;
+  $(".education-entry:last").append(formattedSchoolTitle);
+
+  var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+  $(".education-entry:last").append(formattedSchoolDates);
+  
+  var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
+  $(".education-entry:last").append(formattedSchoolMajor);
+
+  var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+  $(".education-entry:last").append(formattedSchoolLocation);
+
+}
+}
+
+displayEducation();
 
 $(document).click(function(loc) { 
     var x = loc.pageX; 
